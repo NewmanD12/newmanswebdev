@@ -256,7 +256,7 @@ export default function Home() {
                 Whether it's a restaurant like Gustard's Bistro, a contractor, salon, professional service, or small business in Southern West Virginia, I focus on clean design, strong performance, good SEO, and easy updates so you can focus on what you do best.
               </p>
               <p className="text-lg text-gray-700 mb-8">
-                Born and raised in WV, I love helping local companies stand out in a digital world.
+                Raised in WV since I was 6, I love helping local companies stand out in a digital world.
               </p>
 
               <Link
