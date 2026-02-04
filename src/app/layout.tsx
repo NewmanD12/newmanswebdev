@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './globals.css';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "Newman's Web Development LLC | Veteran-Owned Web Developer in WV",
@@ -29,6 +30,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#3f6a92" />
       </head>
       <body className="bg-white antialiased">
+        <Analytics />
         <Navbar />
         {children}
         <Footer />
