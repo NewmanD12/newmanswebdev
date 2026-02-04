@@ -152,6 +152,106 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#3f6a92] mb-4">
+              Choose Your Package
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Affordable custom websites for Southern West Virginia businesses.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Starter Tier */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-gray-200">
+              <div className="bg-[#3f6a92] text-white p-8 text-center">
+                <h3 className="text-2xl font-bold mb-2">Starter</h3>
+                <p className="text-4xl font-bold">$500–$1,000</p>
+                <p className="text-sm mt-2 opacity-90">Perfect for getting online fast</p>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-4 text-gray-700">
+                  <li>1–4 pages</li>
+                  <li>Mobile-friendly design</li>
+                  <li>Basic contact form</li>
+                  <li>Simple SEO setup</li>
+                  <li>1 round of revisions</li>
+                </ul>
+                <Link
+                  href="/contact"
+                  className="mt-8 block bg-[#3f6a92] text-white text-center font-semibold py-4 rounded-lg hover:bg-[#366089] transition"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+
+            {/* Growth Tier (Recommended) */}
+            <div className="bg-white rounded-xl shadow-2xl overflow-hidden border-2 border-[#3f6a92] relative">
+              <div className="absolute top-0 right-0 bg-[#3f6a92] text-white px-4 py-1 text-sm font-bold">
+                Most Popular
+              </div>
+              <div className="bg-[#3f6a92] text-white p-8 text-center">
+                <h3 className="text-2xl font-bold mb-2">Growth</h3>
+                <p className="text-4xl font-bold">$1,000–$2,500</p>
+                <p className="text-sm mt-2 opacity-90">Full small business solution</p>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-4 text-gray-700">
+                  <li>5–10 pages</li>
+                  <li>Custom design & features</li>
+                  <li>Performance optimization</li>
+                  <li>On-page SEO & local keywords</li>
+                  <li>2 rounds of revisions</li>
+                  <li>1 month free maintenance</li>
+                </ul>
+                <Link
+                  href="/contact"
+                  className="mt-8 block bg-[#3f6a92] text-white text-center font-semibold py-4 rounded-lg hover:bg-[#366089] transition"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+
+            {/* Premium Tier */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-gray-200">
+              <div className="bg-[#3f6a92] text-white p-8 text-center">
+                <h3 className="text-2xl font-bold mb-2">Premium</h3>
+                <p className="text-4xl font-bold">$2,500–$5,000+</p>
+                <p className="text-sm mt-2 opacity-90">Advanced custom build</p>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-4 text-gray-700">
+                  <li>10+ pages or complex needs</li>
+                  <li>Full redesign from scratch</li>
+                  <li>Advanced SEO & security</li>
+                  <li>3–6 months support option</li>
+                  <li>Unlimited revisions (within scope)</li>
+                </ul>
+                <Link
+                  href="/contact"
+                  className="mt-8 block bg-[#3f6a92] text-white text-center font-semibold py-4 rounded-lg hover:bg-[#366089] transition"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center text-gray-600">
+            <p className="text-lg">
+              All packages include free initial consultation. 50% deposit to start, balance on completion.
+            </p>
+            <p className="mt-4 font-medium">
+              Not sure which tier? Contact me — we'll find the right fit for your budget and goals.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Portfolio Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">

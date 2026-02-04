@@ -22,6 +22,9 @@ export default function Navbar() {
           <Link href="/services" className="hover:text-gray-200 transition">
             Services
           </Link>
+          <Link href="/pricing" className="hover:text-gray-200 transition">
+            Pricing
+          </Link>
           <Link href="/contact" className="hover:text-gray-200 transition">
             Contact
           </Link>
@@ -63,6 +66,13 @@ export default function Navbar() {
               className="text-lg hover:text-gray-200 transition"
             >
               Services
+            </Link>
+            <Link
+              href="/pricing"
+              onClick={() => setIsOpen(false)}
+              className="text-lg hover:text-gray-200 transition"
+            >
+              Pricing
             </Link>
             <Link
               href="/contact"
