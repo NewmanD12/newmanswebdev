@@ -290,7 +290,7 @@ export default function Home() {
                 </ul>
                 <div className="flex flex-col items-center sm:flex-row gap-4">
                   <a
-                    href="https://dentist-office-one.vercel.app" // ← your actual LIVE URL
+                    href="https://dentist-office-one.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block bg-[#3f6a92] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#366089] transition flex-1 text-center"
@@ -298,7 +298,7 @@ export default function Home() {
                     View Live Site →
                   </a>
                   <Link
-                    href="/projects/stephanski-family-dentistry"
+                    href="/projects/stephanskis"
                     className="inline-block border-2 border-[#3f6a92] text-[#3f6a92] font-semibold px-6 py-3 rounded-lg hover:bg-[#3f6a92] hover:text-white transition flex-1 text-center"
                   >
                     View Project Breakdown →
