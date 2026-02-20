@@ -268,10 +268,51 @@ export default function Home() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <Image
+                  src="/dentistHomePage.png"
+                  alt="Stephanski Family Dentistry website homepage with dark mountain theme and family dentistry branding"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">
+                  Stephanski Family Dentistry
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Custom dark/teal website for a family-owned dental practice in Prince, WV — cinematic mountain background, glassmorphism cards, Calendly booking integration, responsive navbar, and full multi-page structure.
+                </p>
+                <ul className="text-gray-600 mb-6 space-y-2 text-sm">
+                  <li>✓ Fully responsive & mobile-first design</li>
+                  <li>✓ Dark moody theme with WV mountains aesthetic</li>
+                  <li>✓ Calendly embed with custom dark blending</li>
+                  <li>✓ About, Services, Locations, Contact pages</li>
+                </ul>
+                <div className="flex flex-col items-center sm:flex-row gap-4">
+                  <a
+                    href="https://dentist-office-one.vercel.app" // ← your actual LIVE URL
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#3f6a92] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#366089] transition flex-1 text-center"
+                  >
+                    View Live Site →
+                  </a>
+                  <Link
+                    href="/projects/stephanski-family-dentistry"
+                    className="inline-block border-2 border-[#3f6a92] text-[#3f6a92] font-semibold px-6 py-3 rounded-lg hover:bg-[#3f6a92] hover:text-white transition flex-1 text-center"
+                  >
+                    View Project Breakdown →
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-48 overflow-hidden">
+                <Image
                   src="/gustards.png"
                   alt="Gustard's Bistro restaurant website homepage showing menu and local sourcing"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
@@ -286,14 +327,23 @@ export default function Home() {
                   <li>✓ Local WV focus & branding</li>
                   <li>✓ Optimized loading & SEO</li>
                 </ul>
-                <a
-                  href="https://gustardsbistro.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#3f6a92] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#366089] transition"
-                >
-                  View Live Site →
-                </a>
+                <div className="flex flex-col items-center sm:flex-row gap-4">
+                  <a
+                    href="https://gustardsbistro.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#3f6a92] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#366089] transition flex-1 text-center"
+                  >
+                    View Live Site →
+                  </a>
+                  <Link
+                    href="/projects/gustards"
+                    className="inline-block border-2 border-[#3f6a92] text-[#3f6a92] font-semibold px-6 py-3 rounded-lg hover:bg-[#3f6a92] hover:text-white transition flex-1 text-center"
+                  >
+                    View Project Breakdown →
+                  </Link>
+
+                </div>
               </div>
             </div>
 
