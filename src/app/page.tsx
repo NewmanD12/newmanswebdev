@@ -1,15 +1,47 @@
+'use client'; // Required for client-side features in Next.js App Router
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, Variants } from 'framer-motion';
+
+// Reusable transition settings
+const baseTransition = {
+  duration: 0.8,
+  ease: 'easeOut' as const,
+};
+
+// Fade-up variant (used for most elements)
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+// Stagger container for children
+const staggerContainer: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
+      ...baseTransition,
+    },
+  },
+};
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-[#3f6a92]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3f6a92] via-[#4a75a0] to-[#3f6a92] opacity-95" />
-
+    <main className="min-h-screen bg-gray-50">
+      {/* Hero – Enhanced with motion */}
+      <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-[#3f6a92]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#3f6a92] via-[#2563eb] to-[#3f6a92] opacity-95" />
         <div className="relative z-10 text-center px-6 md:px-12 max-w-5xl w-full pb-16 sm:pb-20 md:pb-24">
-          <div className="mb-8 md:mb-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+            className="mb-8 md:mb-12"
+          >
             <Image
               src="/logo.svg"
               alt="Newman's Web Development LLC Logo"
@@ -18,161 +50,220 @@ export default function Home() {
               className="mx-auto max-w-[80%] md:max-w-[60%] drop-shadow-[0_15px_35px_rgba(0,0,0,0.75)]"
               priority
             />
-          </div>
+          </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...baseTransition, delay: 0.4 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white leading-tight mb-6 drop-shadow-2xl tracking-tight"
+          >
             Newman's Web Development LLC
-          </h1>
+          </motion.h1>
 
-          <p className="text-xl sm:text-2xl md:text-3xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Custom Websites, Fast Performance & Local Expertise
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...baseTransition, delay: 0.6 }}
+            className="text-2xl sm:text-3xl md:text-4xl text-gray-100 mb-12 max-w-4xl mx-auto leading-relaxed font-medium"
+          >
+            Custom Websites, Blazing Fast Performance & Local Southern WV Expertise
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...baseTransition, delay: 0.8 }}
+            className="flex flex-col sm:flex-row justify-center gap-6"
+          >
             <Link
               href="/contact"
-              className="bg-white text-[#3f6a92] hover:bg-gray-100 font-semibold px-10 py-5 rounded-lg text-lg md:text-xl shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="group relative overflow-hidden bg-white text-[#3f6a92] hover:text-white font-extrabold px-10 py-5 rounded-xl text-xl shadow-2xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(63,106,146,0.7)] transform hover:scale-105"
             >
-              Get a Free Quote
+              <span className="relative z-10">Get a Free Quote</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-[#3f6a92] via-[#2563eb] to-[#3f6a92] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </Link>
 
             <Link
               href="/services"
-              className="border-2 border-[#8C8B8A] text-white hover:bg-[#8C8B8A]/20 font-semibold px-10 py-5 rounded-lg text-lg md:text-xl transition-all duration-300"
+              className="group relative overflow-hidden border-2 border-white/50 text-white hover:text-white font-extrabold px-10 py-5 rounded-xl text-xl transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transform hover:scale-105"
             >
-              View Our Services
+              <span className="relative z-10">View Our Services</span>
+              <span className="absolute inset-0 bg-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </Link>
-          </div>
+          </motion.div>
 
-          <div className="mt-12 text-gray-200 text-lg">
-            <p>Serving Southern West Virginia • Modern, Secure & Mobile-Friendly Sites</p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3, ...baseTransition }}
+            className="mt-12 text-gray-100 text-xl font-medium drop-shadow-md"
+          >
+            Serving Southern West Virginia • Modern, Secure & Mobile-Friendly Sites
+          </motion.div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce hidden md:block">
           <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerContainer}
+        className="py-24 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#3f6a92] mb-4">
+          <motion.div variants={fadeUpVariants} className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-[#3f6a92] mb-4 tracking-tight">
               Services We Offer
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From small business sites to custom web applications — we build fast, beautiful, and affordable websites that help you grow.
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              From small business sites to custom web apps — fast, beautiful, affordable.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="h-48 bg-gradient-to-br from-[#3f6a92] to-[#4a75a0] flex items-center justify-center">
-                <div className="text-white text-6xl">🌐</div>
+            {/* Custom Website Design */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.06, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
+            >
+              <div className="h-56 bg-gradient-to-br from-[#3f6a92] to-[#2563eb] flex items-center justify-center">
+                <div className="text-white text-8xl opacity-90">🌐</div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">Custom Website Design</h3>
-                <p className="text-gray-600 mb-4">
-                  Unique, modern designs tailored to your brand. Fully responsive and built for speed.
+                <h3 className="text-3xl font-bold text-[#3f6a92] mb-4">Custom Website Design</h3>
+                <p className="text-gray-600 mb-6 text-lg">
+                  Unique, modern designs tailored to your brand. Fully responsive & fast.
                 </p>
-                <Link href="/contact" className="text-[#3f6a92] font-semibold hover:underline">
+                <Link href="/contact" className="text-[#f97316] font-bold hover:underline text-lg">
                   Learn More →
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="h-48 bg-gradient-to-br from-[#3f6a92] to-[#4a75a0] flex items-center justify-center">
-                <div className="text-white text-6xl">⚡</div>
+            {/* Performance & SEO */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.06, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
+            >
+              <div className="h-56 bg-gradient-to-br from-[#3f6a92] to-[#2563eb] flex items-center justify-center">
+                <div className="text-white text-8xl opacity-90">⚡</div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">Performance & SEO</h3>
-                <p className="text-gray-600 mb-4">
-                  Lightning-fast sites that rank higher on Google and keep visitors engaged.
+                <h3 className="text-3xl font-bold text-[#3f6a92] mb-4">Performance & SEO</h3>
+                <p className="text-gray-600 mb-6 text-lg">
+                  Lightning-fast sites that rank higher & keep visitors engaged.
                 </p>
-                <Link href="/contact" className="text-[#3f6a92] font-semibold hover:underline">
+                <Link href="/contact" className="text-[#f97316] font-bold hover:underline text-lg">
                   Learn More →
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="h-48 bg-gradient-to-br from-[#3f6a92] to-[#4a75a0] flex items-center justify-center">
-                <div className="text-white text-6xl">🔧</div>
+            {/* Website Maintenance */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.06, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
+            >
+              <div className="h-56 bg-gradient-to-br from-[#3f6a92] to-[#2563eb] flex items-center justify-center">
+                <div className="text-white text-8xl opacity-90">🔧</div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">Website Maintenance</h3>
-                <p className="text-gray-600 mb-4">
-                  Updates, backups, security monitoring — keep your site running smoothly.
+                <h3 className="text-3xl font-bold text-[#3f6a92] mb-4">Website Maintenance</h3>
+                <p className="text-gray-600 mb-6 text-lg">
+                  Updates, backups, security — keep your site running smoothly.
                 </p>
-                <Link href="/contact" className="text-[#3f6a92] font-semibold hover:underline">
+                <Link href="/contact" className="text-[#f97316] font-bold hover:underline text-lg">
                   Learn More →
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="h-48 bg-gradient-to-br from-[#3f6a92] to-[#4a75a0] flex items-center justify-center">
-                <div className="text-white text-6xl">📱</div>
+            {/* Landing Pages That Convert */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.06, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
+            >
+              <div className="h-56 bg-gradient-to-br from-[#3f6a92] to-[#2563eb] flex items-center justify-center">
+                <div className="text-white text-8xl opacity-90">📱</div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">Landing Pages That Convert</h3>
-                <p className="text-gray-600 mb-4">
-                  High-converting pages for ads, leads, or promotions — built fast and tested.
+                <h3 className="text-3xl font-bold text-[#3f6a92] mb-4">Landing Pages That Convert</h3>
+                <p className="text-gray-600 mb-6 text-lg">
+                  High-converting pages for ads, leads, promotions — built fast.
                 </p>
-                <Link href="/contact" className="text-[#3f6a92] font-semibold hover:underline">
+                <Link href="/contact" className="text-[#f97316] font-bold hover:underline text-lg">
                   Learn More →
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="h-48 bg-gradient-to-br from-[#3f6a92] to-[#4a75a0] flex items-center justify-center">
-                <div className="text-white text-6xl">🛡️</div>
+            {/* Fixes & Redesigns */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.06, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
+            >
+              <div className="h-56 bg-gradient-to-br from-[#3f6a92] to-[#2563eb] flex items-center justify-center">
+                <div className="text-white text-8xl opacity-90">🛡️</div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">Fixes & Redesigns</h3>
-                <p className="text-gray-600 mb-4">
-                  Slow or outdated site? We’ll build you a fully new, modern website from scratch.
+                <h3 className="text-3xl font-bold text-[#3f6a92] mb-4">Fixes & Redesigns</h3>
+                <p className="text-gray-600 mb-6 text-lg">
+                  Outdated or slow site? We rebuild modern from scratch.
                 </p>
-                <Link href="/contact" className="text-[#3f6a92] font-semibold hover:underline">
+                <Link href="/contact" className="text-[#f97316] font-bold hover:underline text-lg">
                   Learn More →
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="py-20 bg-gray-50">
+      {/* Packages Section */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerContainer}
+        className="py-24 bg-gray-50"
+      >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#3f6a92] mb-4">
+          <motion.div variants={fadeUpVariants} className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-[#3f6a92] mb-4 tracking-tight">
               Choose Your Package
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Affordable custom websites for Southern West Virginia businesses.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Starter Tier */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-gray-200">
+            {/* Starter */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-gray-200"
+            >
               <div className="bg-[#3f6a92] text-white p-8 text-center">
                 <h3 className="text-2xl font-bold mb-2">Starter</h3>
                 <p className="text-4xl font-bold">$500–$1,000</p>
                 <p className="text-sm mt-2 opacity-90">Perfect for getting online fast</p>
               </div>
               <div className="p-8">
-                <ul className="space-y-4 text-gray-700">
+                <ul className="space-y-4 text-gray-700 text-left text-base">
                   <li>1–4 pages</li>
                   <li>Mobile-friendly design</li>
                   <li>Basic contact form</li>
@@ -181,16 +272,20 @@ export default function Home() {
                 </ul>
                 <Link
                   href="/contact"
-                  className="mt-8 block bg-[#3f6a92] text-white text-center font-semibold py-4 rounded-lg hover:bg-[#366089] transition"
+                  className="mt-8 block bg-[#3f6a92] text-white text-center font-bold py-4 rounded-xl hover:bg-[#2563eb] transition text-lg"
                 >
                   Get Started
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Growth Tier (Recommended) */}
-            <div className="bg-white rounded-xl shadow-2xl overflow-hidden border-2 border-[#3f6a92] relative">
-              <div className="absolute top-0 right-0 bg-[#3f6a92] text-white px-4 py-1 text-sm font-bold">
+            {/* Growth - Most Popular */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-[#3f6a92] relative"
+            >
+              <div className="absolute top-0 right-0 bg-[#f97316] text-white px-5 py-2 text-sm font-extrabold rounded-bl-lg shadow-md">
                 Most Popular
               </div>
               <div className="bg-[#3f6a92] text-white p-8 text-center">
@@ -199,7 +294,7 @@ export default function Home() {
                 <p className="text-sm mt-2 opacity-90">Full small business solution</p>
               </div>
               <div className="p-8">
-                <ul className="space-y-4 text-gray-700">
+                <ul className="space-y-4 text-gray-700 text-left text-base">
                   <li>5–10 pages</li>
                   <li>Custom design & features</li>
                   <li>Performance optimization</li>
@@ -209,22 +304,26 @@ export default function Home() {
                 </ul>
                 <Link
                   href="/contact"
-                  className="mt-8 block bg-[#3f6a92] text-white text-center font-semibold py-4 rounded-lg hover:bg-[#366089] transition"
+                  className="mt-8 block bg-[#3f6a92] text-white text-center font-bold py-4 rounded-xl hover:bg-[#2563eb] transition text-lg"
                 >
                   Get Started
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Premium Tier */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-gray-200">
+            {/* Premium */}
+            <motion.div
+              variants={fadeUpVariants}
+              whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-gray-200"
+            >
               <div className="bg-[#3f6a92] text-white p-8 text-center">
                 <h3 className="text-2xl font-bold mb-2">Premium</h3>
                 <p className="text-4xl font-bold">$2,500–$5,000+</p>
                 <p className="text-sm mt-2 opacity-90">Advanced custom build</p>
               </div>
               <div className="p-8">
-                <ul className="space-y-4 text-gray-700">
+                <ul className="space-y-4 text-gray-700 text-left text-base">
                   <li>10+ pages or complex needs</li>
                   <li>Full redesign from scratch</li>
                   <li>Advanced SEO & security</li>
@@ -233,192 +332,202 @@ export default function Home() {
                 </ul>
                 <Link
                   href="/contact"
-                  className="mt-8 block bg-[#3f6a92] text-white text-center font-semibold py-4 rounded-lg hover:bg-[#366089] transition"
+                  className="mt-8 block bg-[#3f6a92] text-white text-center font-bold py-4 rounded-xl hover:bg-[#2563eb] transition text-lg"
                 >
                   Get Started
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="mt-12 text-center text-gray-600">
+          <motion.div variants={fadeUpVariants} className="mt-12 text-center text-gray-700">
             <p className="text-lg">
               All packages include free initial consultation. 50% deposit to start, balance on completion.
             </p>
             <p className="mt-4 font-medium">
-              Not sure which tier? Contact me — we'll find the right fit for your budget and goals.
+              Not sure? Contact me — we'll match the right fit for your budget & goals.
             </p>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Portfolio Section */}
-      <section className="py-20 bg-white">
+      {/* Live Websites Showcase */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={staggerContainer}
+        className="py-24 bg-gradient-to-b from-white to-gray-100"
+      >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#3f6a92] mb-4">
-              Recent Work
+          <motion.div variants={fadeUpVariants} className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-[#3f6a92] mb-4 tracking-tight">
+              Live Websites & Examples We've Built
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real websites we've built from scratch for local businesses in Southern West Virginia.
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto">
+              Real results for local Southern WV businesses — hover to see more, click to visit live.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src="/dentistHomePage.png"
-                  alt="Stephanski Family Dentistry website homepage with dark mountain theme and family dentistry branding"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">
-                  Stephanski Family Dentistry
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Custom dark/teal website for a family-owned dental practice in Prince, WV — cinematic mountain background, glassmorphism cards, Calendly booking integration, responsive navbar, and full multi-page structure.
-                </p>
-                <ul className="text-gray-600 mb-6 space-y-2 text-sm">
-                  <li>✓ Fully responsive & mobile-first design</li>
-                  <li>✓ Dark moody theme with WV mountains aesthetic</li>
-                  <li>✓ Calendly embed with custom dark blending</li>
-                  <li>✓ About, Services, Locations, Contact pages</li>
-                </ul>
-                <div className="flex flex-col items-center sm:flex-row gap-4">
-                  <a
-                    href="https://dentist-office-one.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-[#3f6a92] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#366089] transition flex-1 text-center"
-                  >
-                    View Live Site →
-                  </a>
-                  <Link
-                    href="/projects/stephanskis"
-                    className="inline-block border-2 border-[#3f6a92] text-[#3f6a92] font-semibold px-6 py-3 rounded-lg hover:bg-[#3f6a92] hover:text-white transition flex-1 text-center"
-                  >
-                    View Project Breakdown →
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="relative h-48 overflow-hidden">
+            {/* Gustard's Bistro - Live */}
+            <motion.div
+              variants={fadeUpVariants}
+              className="group relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] transition-all duration-500"
+            >
+              <div className="relative aspect-video">
                 <Image
                   src="/gustards.png"
-                  alt="Gustard's Bistro restaurant website homepage showing menu and local sourcing"
+                  alt="Gustard's Bistro"
                   fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#3f6a92] mb-3">Gustard's Bistro</h3>
-                <p className="text-gray-600 mb-4">
-                  Upscale bistro in White Sulphur Springs — custom design featuring menu pages, gallery, local farmer highlights, and fast, mobile-friendly performance.
-                </p>
-                <ul className="text-gray-600 mb-6 space-y-2 text-sm">
-                  <li>✓ Fully responsive & modern layout</li>
-                  <li>✓ Menu & gallery integration</li>
-                  <li>✓ Local WV focus & branding</li>
-                  <li>✓ Optimized loading & SEO</li>
-                </ul>
-                <div className="flex flex-col items-center sm:flex-row gap-4">
-                  <a
-                    href="https://gustardsbistro.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-[#3f6a92] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#366089] transition flex-1 text-center"
-                  >
-                    View Live Site →
-                  </a>
-                  <Link
-                    href="/projects/gustards"
-                    className="inline-block border-2 border-[#3f6a92] text-[#3f6a92] font-semibold px-6 py-3 rounded-lg hover:bg-[#3f6a92] hover:text-white transition flex-1 text-center"
-                  >
-                    View Project Breakdown →
-                  </Link>
-
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="text-2xl font-bold">Gustard's Bistro</h3>
+                    <p className="text-base mt-1">Live site – Upscale WV bistro with menu, gallery & local focus</p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-xl shadow-lg overflow-hidden border-2 border-dashed border-gray-300">
-              <div className="h-48 bg-gray-100 flex items-center justify-center text-gray-500">
-                <div className="text-center">
-                  <p className="text-lg font-medium">More projects coming soon</p>
-                  <p className="text-sm mt-1">Your business could be next!</p>
-                </div>
+              <div className="absolute top-4 right-4 bg-[#22d3ee] text-black px-4 py-1 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition duration-300 shadow-md">
+                Live Site
               </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-500 mb-3">Your Project Here?</h3>
-                <p className="text-gray-600 mb-6">
-                  Let's create something great together.
-                </p>
-                <Link href="/contact" className="text-[#3f6a92] font-semibold hover:underline">
-                  Get Started →
-                </Link>
-              </div>
-            </div>
-          </div>
+              <a
+                href="https://gustardsbistro.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+              />
+            </motion.div>
 
-          <div className="mt-12 text-center">
-            <Link
-              href="/contact"
-              className="inline-block bg-white border-2 border-[#3f6a92] text-[#3f6a92] font-semibold px-10 py-5 rounded-lg hover:bg-[#3f6a92] hover:text-white transition text-lg shadow-md"
+            {/* Ink Mountain Tattoo - Example */}
+            <motion.div
+              variants={fadeUpVariants}
+              className="group relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] transition-all duration-500"
             >
-              Ready for Your Site?
-            </Link>
+              <div className="relative aspect-video">
+                <Image
+                  src="/inkMountain.png"
+                  alt="Ink Mountain Tattoo"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="text-2xl font-bold">Ink Mountain Tattoo</h3>
+                    <p className="text-base mt-1">Example/demo – Moody tattoo studio with interactive gallery</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute top-4 right-4 bg-[#f97316] text-white px-4 py-1 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition duration-300 shadow-md">
+                Example Site
+              </div>
+              <a
+                href="https://tattoo-shop-psi.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+              />
+            </motion.div>
+
+            {/* Stephanski Family Dentistry - Example */}
+            <motion.div
+              variants={fadeUpVariants}
+              className="group relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] transition-all duration-500"
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src="/dentistHomePage.png"
+                  alt="Stephanski Family Dentistry"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="text-2xl font-bold">Stephanski Family Dentistry</h3>
+                    <p className="text-base mt-1">Example/demo – Family dental practice with Calendly integration</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute top-4 right-4 bg-[#f97316] text-white px-4 py-1 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition duration-300 shadow-md">
+                Example Site
+              </div>
+              <a
+                href="https://dentist-office-one.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+              />
+            </motion.div>
+
+            {/* Placeholder */}
+            <motion.div
+              variants={fadeUpVariants}
+              className="bg-gray-100 rounded-2xl shadow-xl overflow-hidden border-2 border-dashed border-gray-300 flex flex-col justify-center items-center text-center p-12 min-h-[300px]"
+            >
+              <h3 className="text-2xl font-bold text-gray-500 mb-4">Your Business Here?</h3>
+              <p className="text-gray-600 mb-6 text-lg">
+                Let's build your live site next.
+              </p>
+              <Link
+                href="/contact"
+                className="bg-[#3f6a92] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#2563eb] transition"
+              >
+                Get Started →
+              </Link>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-50">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+        className="py-24 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Photo first on mobile */}
-            <div className="relative h-96 md:min-h-[500px] rounded-xl overflow-hidden shadow-xl order-1 md:order-2">
+            <motion.div variants={fadeUpVariants} className="order-2 md:order-1">
+              <h2 className="text-5xl md:text-6xl font-extrabold text-[#3f6a92] mb-4 tracking-tight">
+                Hi, I'm Dakota
+              </h2>
+              <p className="text-2xl font-bold text-[#3f6a92] mb-6">
+                Veteran Owned & Operated
+              </p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                Beaver, WV-based web developer helping Southern West Virginia businesses get online with custom, fast-loading, mobile-friendly websites. Built from scratch — no templates.
+              </p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                Restaurants like Gustard's Bistro, professionals, contractors — I focus on clean design, performance, SEO, and easy updates.
+              </p>
+              <p className="text-lg text-gray-700 mb-8">
+                Raised in WV, proud to help local companies stand out.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block bg-[#3f6a92] text-white font-extrabold px-10 py-5 rounded-xl hover:bg-[#2563eb] transition text-xl shadow-xl transform hover:scale-105"
+              >
+                Let's Build Something Great
+              </Link>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUpVariants}
+              className="relative h-96 md:min-h-[500px] rounded-2xl overflow-hidden shadow-2xl order-1 md:order-2"
+            >
               <Image
                 src="/dakota.png"
                 alt="Dakota Newman - Veteran Owned Web Developer in Beaver, West Virginia"
                 fill
                 className="object-cover"
-                priority={false}
               />
-            </div>
-
-            <div className="order-2 md:order-1">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#3f6a92] mb-4">
-                Hi, I'm Dakota
-              </h2>
-              <p className="text-xl font-semibold text-[#3f6a92] mb-6">
-                Veteran Owned & Operated
-              </p>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                I'm a Beaver, WV-based web developer helping local Southern West Virginia businesses get online with custom, fast-loading, and mobile-friendly websites. Everything I build is from scratch — no templates, no shortcuts — so your site actually represents your brand and brings in real results.
-              </p>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Whether it's a restaurant like Gustard's Bistro, a contractor, salon, professional service, or small business in Southern West Virginia, I focus on clean design, strong performance, good SEO, and easy updates so you can focus on what you do best.
-              </p>
-              <p className="text-lg text-gray-700 mb-8">
-                Raised in WV since I was 6, I love helping local companies stand out in a digital world.
-              </p>
-
-              <Link
-                href="/contact"
-                className="inline-block bg-[#3f6a92] text-white font-semibold px-8 py-4 rounded-lg hover:bg-[#366089] transition text-lg shadow-md"
-              >
-                Let's Build Something Great
-              </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }
