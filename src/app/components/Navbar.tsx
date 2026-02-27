@@ -78,6 +78,13 @@ export default function Navbar() {
               Pricing
             </Link>
             <Link
+              href="/about"
+              onClick={() => setIsOpen(false)}
+              className="text-lg hover:text-gray-200 transition"
+            >
+              About Me
+            </Link>
+            <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
               className="text-lg hover:text-gray-200 transition"

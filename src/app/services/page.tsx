@@ -33,7 +33,7 @@ export default function Services() {
     <main className="min-h-screen bg-gray-50 overflow-x-hidden">
       {/* Hero-like Header – Matches homepage/pricing style */}
       <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#3f6a92]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3f6a92] via-[#2563eb] to-[#3f6a92] opacity-95" />
+        <div className="absolute inset-0 bg-[#3f6a92]" />
         <div className="relative z-10 text-center px-6 md:px-12 max-w-5xl w-full py-12 sm:py-16 md:py-24">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}

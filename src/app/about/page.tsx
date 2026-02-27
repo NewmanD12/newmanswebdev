@@ -36,7 +36,7 @@ export default function About() {
     <main className="min-h-screen bg-gray-50 overflow-x-hidden">
       {/* Hero Header – Matches other pages */}
       <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#3f6a92]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3f6a92] via-[#2563eb] to-[#3f6a92] opacity-95" />
+        <div className="absolute inset-0 bg-[#3f6a92]" />
         <div className="relative z-10 text-center px-6 md:px-12 max-w-5xl w-full py-12 sm:py-16 md:py-24">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -105,7 +105,7 @@ export default function About() {
                 </p>
                 {/* Photo Placeholder 2 */}
                 {/* Suggested image: You in uniform (if comfortable), F-15E in flight, base sign, or patch/insignia. Keep respectful. */}
-                <div className="mt-6"><Image src={airForcePhoto} alt="Serving in the U.S. Air Force" width={600} height={400} className="rounded-2xl shadow-xl" /></div>
+                {/* <div className="mt-6"><Image src={airForcePhoto} alt="Serving in the U.S. Air Force" width={600} height={400} className="rounded-2xl shadow-xl" /></div> */}
               </div>
 
               {/* Love & Marriage */}
@@ -120,7 +120,7 @@ export default function About() {
                   In Oregon, we bought our first house and welcomed our first dogs, Chiboe and Chubbs, who quickly became the heart of our home.
                 </p>
                 {/* Photo Placeholder 3 */}
-                <div className="mt-6"><Image src={firstHome} alt="Our First Home" width={600} height={400} className="rounded-2xl shadow-xl" /></div>
+                {/* <div className="mt-6"><Image src={firstHome} alt="Our First Home" width={600} height={400} className="rounded-2xl shadow-xl" /></div> */}
               </div>
 
               {/* Coming Home */}
