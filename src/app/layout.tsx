@@ -36,12 +36,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Veteran-Owned Web Developer Beckley WV | Beaver, Mt Hope, Oak Hill",
-    description: "Custom websites & SEO for Southern West Virginia businesses.",
-    images: ["/og-image.jpg"],
-  },
   alternates: {
     canonical: "https://newmanswebdev.com",
   },
