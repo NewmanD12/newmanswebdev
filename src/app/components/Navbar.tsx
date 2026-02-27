@@ -25,9 +25,9 @@ export default function Navbar() {
           <Link href="/pricing" className="hover:text-gray-200 transition">
             Pricing
           </Link>
-          <Link href="/about" className="hover:text-gray-200 transition">
+          {/* <Link href="/about" className="hover:text-gray-200 transition">
             About Me
-          </Link>
+          </Link> */}
           <Link href="/contact" className="hover:text-gray-200 transition">
             Contact
           </Link>
@@ -77,13 +77,13 @@ export default function Navbar() {
             >
               Pricing
             </Link>
-            <Link
+            {/* <Link
               href="/about"
               onClick={() => setIsOpen(false)}
               className="text-lg hover:text-gray-200 transition"
             >
               About Me
-            </Link>
+            </Link> */}
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}

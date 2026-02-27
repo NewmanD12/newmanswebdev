@@ -288,12 +288,12 @@ export default function Home() {
                 >
                   Let's Build Something Great
                 </Link>
-                <Link
+                {/* <Link
                   href="/about"
                   className="inline-block bg-white border-2 border-[#3f6a92] text-[#3f6a92] font-extrabold px-10 py-5 rounded-xl hover:bg-[#3f6a92] hover:text-white transition text-xl shadow-xl transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#2563eb]/50"
                 >
                   Learn More About Me
-                </Link>
+                </Link> */}
               </div>
             </motion.div>
             <motion.div
