@@ -53,7 +53,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <meta name="theme-color" content="#3f6a92" />
-
+        <link rel="preconnect" href="https://challenges.cloudflare.com"></link>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -77,6 +77,12 @@ export default function RootLayout({
             }),
           }}
         />
+
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer
+        ></script>
       </head>
 
       <body className="bg-white antialiased">

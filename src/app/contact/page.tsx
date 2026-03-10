@@ -1,10 +1,12 @@
 'use client';
 import { useState, useRef } from 'react';
+import{ Turnstile } from '@marsidev/react-turnstile';
 
 export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [token, setToken] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -21,22 +23,32 @@ export default function Contact() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!token) {
+      setStatus('error');
+      setMessage('Please complete the verification challenge.');
+      return;
+    }
+
     setStatus('loading');
     setMessage('');
 
     const form = e.currentTarget;
     const formData = new FormData();
 
-    // Manually collect text fields
+    // Collect text fields manually (since you're using FormData + files)
     formData.append('name', (form.elements.namedItem('name') as HTMLInputElement)?.value || '');
     formData.append('email', (form.elements.namedItem('email') as HTMLInputElement)?.value || '');
     formData.append('phone', (form.elements.namedItem('phone') as HTMLInputElement)?.value || '');
     formData.append('message', (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '');
 
-    // Append all selected files
+    // Append files
     selectedFiles.forEach((file) => {
       formData.append('pictures', file);
     });
+
+    // Add Turnstile token
+    formData.append('cf-turnstile-response', token);
 
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
@@ -53,6 +65,7 @@ export default function Contact() {
       setMessage('Maximum 5 pictures allowed.');
       return;
     }
+
     for (const file of selectedFiles) {
       if (file.size > 5 * 1024 * 1024) {
         setStatus('error');
@@ -74,6 +87,7 @@ export default function Contact() {
         form.reset();
         setSelectedFiles([]);
         if (fileInputRef.current) fileInputRef.current.value = '';
+        setToken(null); // Reset token after success
       } else {
         let errorMsg = 'Something went wrong. Please try again.';
         try {
@@ -84,7 +98,6 @@ export default function Contact() {
         setMessage(errorMsg);
       }
     } catch (err) {
-      // console.error('Fetch error:', err);
       setStatus('error');
       setMessage('Network issue — please check your connection or call/text me directly at (304) 719-1117.');
     }
@@ -96,9 +109,8 @@ export default function Contact() {
         <h1 className="text-4xl md:text-5xl font-bold text-[#3f6a92] text-center mb-6">
           Get In Touch
         </h1>
-
         <p className="text-xl text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-          Ready for a new website, redesign, or have questions about your online presence?  
+          Ready for a new website, redesign, or have questions about your online presence?
           Fill out the form below — feel free to attach pictures (logos, current site screenshots, inspiration, etc.).
         </p>
 
@@ -202,14 +214,27 @@ export default function Contact() {
             )}
           </div>
 
+          {/* Turnstile widget */}
+          <div className="flex justify-center my-6">
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={(token) => setToken(token)}
+              onError={() => {
+                setToken(null);
+                setMessage('Verification failed. Please try again.');
+              }}
+              onExpire={() => setToken(null)}
+            />
+          </div>
+
           <button
             type="submit"
-            disabled={status === 'loading'}
-            className={`w-full font-semibold py-4 rounded-lg transition text-white shadow-md
-              ${status === 'loading'
+            disabled={status === 'loading' || !token}
+            className={`w-full font-semibold py-4 rounded-lg transition text-white shadow-md ${
+              status === 'loading' || !token
                 ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-[#3f6a92] hover:bg-[#366089] active:bg-[#2c557a]'
-              }`}
+            }`}
           >
             {status === 'loading' ? 'Sending...' : 'Send Message'}
           </button>
@@ -227,11 +252,12 @@ export default function Contact() {
 
         <div className="mt-12 text-center text-gray-600">
           <p className="text-lg font-medium">
-            Or call/text me directly: <a href="tel:+13047191117" className="text-[#3f6a92] hover:underline">(304) 719-1117</a>
+            Or call/text me directly:{' '}
+            <a href="tel:+13047191117" className="text-[#3f6a92] hover:underline">
+              (304) 719-1117
+            </a>
           </p>
-          <p className="mt-2">
-            Beckley / Beaver area • Southern West Virginia
-          </p>
+          <p className="mt-2">Beckley / Beaver area • Southern West Virginia</p>
         </div>
       </div>
     </main>
