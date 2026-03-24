@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://newmanswebdev.com'),
 
   title: {
-    // Use template for easier page-specific titles later
     template: "%s | Newman's Web Development – Beckley WV Web Developer",
     default: 'Web Developer Beckley WV | Custom Websites Beaver, Mt Hope, Oak Hill',
   },
@@ -16,7 +15,6 @@ export const metadata: Metadata = {
   description:
     "Veteran-owned web developer in Southern West Virginia. Custom, fast, mobile-friendly websites for businesses in Beckley, Beaver, Mt Hope, Oak Hill & surrounding areas. Affordable design, SEO, hosting & maintenance. Free consultation – (304) 719-1117.",
 
-  // Keywords still help some engines, but focus on title/desc first
   keywords: [
     "web developer Beckley WV",
     "website design Beaver WV",
@@ -54,7 +52,7 @@ export const metadata: Metadata = {
     title: "Web Developer Beckley WV | Veteran-Owned Custom Websites",
     description:
       "Custom, SEO-optimized websites for Southern WV businesses. Free consultation – (304) 719-1117.",
-    images: ["/og-image.png"],  // Same image works
+    images: ["/og-image.png"],
   },
 
   // Canonical is good – keep it
