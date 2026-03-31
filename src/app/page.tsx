@@ -6,6 +6,7 @@ import gustards from '../../public/gustards.png';
 import inkMountain from '../../public/inkMountain.png';
 import dentistHome from '../../public/dentistHomePage.png';
 import dakota from '../../public/dakota.png';
+import gearheadgarage from '../../public/gearheadgarage.png'
 
 // Reusable transition settings
 const baseTransition = {
@@ -136,6 +137,40 @@ export default function Home() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Gustard's Bistro - Live */}
+            <motion.div
+              variants={fadeUpVariants}
+              className="group relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] transition-all duration-500"
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src={gearheadgarage}
+                  alt="Gearhead Garage website screenshot"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  placeholder="blur"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="text-2xl font-bold">Gearhead Garage</h3>
+                    <p className="text-base mt-1">Live client site – Beckley, WV</p>
+                  </div>
+                </div>
+              </div>
+              {/* Badge: always visible on mobile, hover only on md+ */}
+              <div className="absolute top-4 right-4 bg-[#22d3ee] text-black px-4 py-2 rounded-full text-sm font-bold shadow-md md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                Live Client Site
+              </div>
+              <a
+                href="https://www.gustardsbistro.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+                aria-label="Visit Gearhead Garage live website"
+              />
+            </motion.div>
+
             {/* Gustard's Bistro - Live */}
             <motion.div
               variants={fadeUpVariants}
